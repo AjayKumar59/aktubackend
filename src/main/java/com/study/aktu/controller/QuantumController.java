@@ -89,7 +89,7 @@ public class QuantumController {
 
 		data.put("quantums", quantums);
 		Object datanotfound = "this item is no more !!";
-		if (quantums.isEmpty() == true) {
+		if (!quantums.isPresent()) {
 			data.put("message", datanotfound);
 		}
 		return new ResponseEntity<HashMap<String, Object>>(data, HttpStatus.OK);
@@ -102,7 +102,7 @@ public class QuantumController {
 		
 		Optional<Quantum> q = this.quantumRepository.findById(id);
 		HashMap<String, String> data = new HashMap<String, String>();
-		if (q.isEmpty() == true) {
+		if (!q.isPresent()) {
 			data.put("message", "id not found with id:- " + id);
 		} else {
 			data.put("message", "quantum updated successfully !!");
@@ -129,7 +129,7 @@ public class QuantumController {
 		Optional<Quantum> quantum = this.quantumRepository.findById(id);
 		HashMap<String, String> data = new HashMap<String, String>();
 
-		if (quantum.isEmpty() == true) {
+		if (!quantum.isPresent()) {
 			data.put("message", "id not found with id:- " + id);
 		} else {
 			data.put("message", "Quantum deleted successfully !!");

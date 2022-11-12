@@ -84,7 +84,7 @@ public class PaperController {
 
 		data.put("papers", paper);
 		Object datanotfound = "this paper not exits  !!";
-		if (paper.isEmpty() == true) {
+		if (!paper.isPresent()) {
 			data.put("message", datanotfound);
 		}
 		return new ResponseEntity<HashMap<String, Object>>(data, HttpStatus.OK);
@@ -95,7 +95,7 @@ public class PaperController {
 	public ResponseEntity<?> updateQuantum(@RequestBody Paper newPaper, @PathVariable Long id) {
 		Optional<Paper> p = this.paperRepository.findById(id);
 		HashMap<String, String> data = new HashMap<String, String>();
-		if (p.isEmpty() == true) {
+		if (!p.isPresent()) {
 			data.put("message", "id not found with id:- " + id);
 		} else {
 			data.put("message", "paper updated successfully !!");
@@ -120,7 +120,7 @@ public class PaperController {
 		Optional<Paper> paper = this.paperRepository.findById(id);
 		HashMap<String, String> data = new HashMap<String, String>();
 
-		if (paper.isEmpty() == true) {
+		if (!paper.isPresent()) {
 			data.put("message", "id not found with id:- " + id);
 		} else {
 			data.put("message", "Paper deleted successfully !!");
